@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\Users;
 use Brick\Math\RoundingMode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/expenses', [ExpenseController::class,'index'])->name('expense.all');
-Route::post('/expenses', [ExpenseController::class,'store'])->name('expense.store');
-Route::get('/expense/{expense}', [ExpenseController::class,'show'])->name('expense.show');
+Route::get('/users', [Users::class,'index'])->name('users.all');
+Route::post('/users', [Users::class,'store'])->name('users.store');
+Route::post('/users/login', [Users::class,'show'])->name('users.show');
+// ///////////////////////////////////////////////////////////////////////
+
 Route::put('/expense/{expense}', [ExpenseController::class,'update'])->name('expense.update');
 Route::delete('/expense/{expense}', [ExpenseController::class,'destroy'])->name('expense.destroy');
 
